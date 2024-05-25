@@ -61,7 +61,9 @@ const [otherState, setOtherState] = useState(false);
   const handleClose = () => {
 
 
-    setOpen(false);setOtherState(true)
+    setOpen(false);
+
+     setOtherState(false);
   };
 
 

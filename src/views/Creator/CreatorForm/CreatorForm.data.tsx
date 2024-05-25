@@ -3,7 +3,9 @@ import * as Yup from 'yup'
 
 import RHFDatePicker from 'src/components/ReactHookForm/RHFDatePicker'
 import RHFEditor from 'src/components/ReactHookForm/RHFEditor'
-import RHFField from 'src/components/ReactHookForm/RHFField'
+
+// import RHFField from 'src/components/ReactHookForm/RHFField'
+import RHFTextField from 'src/components/ReactHookForm'
 
 export const FormValidationSchema = Yup.object().shape({
   name: Yup?.string()?.trim()?.required('Required field'),
@@ -29,7 +31,7 @@ export const FormDataArray = () => {
         placeholder: 'Enter Name',
         required: true
       },
-      component: RHFField,
+      component: RHFTextField,
       md: 12
     },
 
