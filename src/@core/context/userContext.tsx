@@ -1,0 +1,45 @@
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+
+interface User {
+  email: string;
+  password: string;
+}
+
+interface UserContextType {
+  user: User;
+  setUser: (user: User) => void;
+}
+
+const UserContext = createContext<UserContextType | undefined>(undefined);
+
+export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User>({ email: '', password: '' });
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user.email && user.password) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+  }, [user]);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+export const UseUser = (): UserContextType => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('UseUser must be used within a UserProvider');
+  }
+
+  return context;
+};

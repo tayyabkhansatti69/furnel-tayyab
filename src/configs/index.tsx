@@ -1,0 +1,7 @@
+export const PAGINATION = {
+  PAGE_LIMIT: 10,
+  ROWS_PER_PAGE: [5, 10, 15, 20],
+  CURRENT_PAGE: 1,
+  PAGE_COUNT: 1,
+  TOTAL_RECORDS: 0,
+};
